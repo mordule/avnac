@@ -8,6 +8,7 @@ import { env } from './config/env'
 import { sql } from './db'
 import { HttpError } from './lib/http'
 import { authPlugin } from './plugins/auth'
+import { aiRoutes } from './routes/ai'
 import { documentsRoutes } from './routes/documents'
 import { mediaRoutes } from './routes/media'
 import { sponsorRoutes } from './routes/sponsor'
@@ -74,6 +75,7 @@ const app = new Elysia({ adapter: node() })
       data: session,
     }
   })
+  .use(aiRoutes)
   .use(documentsRoutes)
   .use(mediaRoutes)
   .use(sponsorRoutes)

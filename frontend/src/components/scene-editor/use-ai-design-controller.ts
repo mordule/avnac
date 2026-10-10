@@ -20,6 +20,7 @@ import {
   setObjectStrokeWidth,
 } from '../../lib/avnac-scene'
 import { layoutSceneText, sceneTextLineHeight } from '../../lib/avnac-scene-render'
+import { parseBackground } from '../../lib/magic/scene-build'
 import { angleFromPoints } from '../../scene-engine/primitives'
 
 type PlaceImageObject = (
@@ -269,6 +270,14 @@ export function useAiDesignController({
         return valid.length
       },
       setBackgroundColor: color => setDoc(prev => ({ ...prev, bg: { type: 'solid', color } })),
+      setBackground: value =>
+        setDoc(prev => {
+          return { ...prev, bg: parseBackground(value) }
+        }),
+      replaceScene: (bg, objects) => {
+        setDoc(prev => ({ ...prev, bg, objects }))
+        setSelectedIds([])
+      },
       clearCanvas: () => {
         const count = doc.objects.length
         setDoc(prev => ({ ...prev, objects: [] }))

@@ -1,5 +1,8 @@
+import type { BgValue } from '../components/background-popover'
+import type { SceneObject } from './avnac-scene'
+
 /**
- * Stable runtime surface that the Tambo agent uses to manipulate the main
+ * Stable runtime surface used to manipulate the main
  * design scene. Built inside `SceneEditor` where it can close over the
  * editor state; consumers receive it as a React ref (null until editor is
  * mounted) so they can defensively no-op when missing.
@@ -129,5 +132,9 @@ export type AiDesignController = {
   deleteObject: (id: string) => boolean
   selectObjects: (ids: string[]) => number
   setBackgroundColor: (color: string) => void
+  /** Solid color or CSS gradient string. */
+  setBackground: (value: string) => void
+  /** Replace background and all objects in one undoable step. */
+  replaceScene: (bg: BgValue, objects: SceneObject[]) => void
   clearCanvas: () => number
 }

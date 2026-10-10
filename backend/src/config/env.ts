@@ -27,6 +27,9 @@ const envSchema = z.object({
   BETTER_AUTH_URL: z.string().url().default('http://localhost:3001'),
   CORS_ORIGIN: z.string().default('http://localhost:3300'),
   UNSPLASH_ACCESS_KEY: optionalNonEmptyString,
+  CENCORI_API_KEY: optionalNonEmptyString,
+  CENCORI_BASE_URL: z.string().url().default('https://api.cencori.com/v1'),
+  CENCORI_MODEL: z.string().min(1).default('gpt-5.4-mini'),
   PAYSTACK_SECRET_KEY: optionalNonEmptyString,
   PAYSTACK_CURRENCY: z
     .string()

@@ -42,7 +42,7 @@ export function loadGoogleFontFamily(family: string): void {
   const link = document.createElement('link')
   link.id = id
   link.rel = 'stylesheet'
-  link.href = `https://fonts.googleapis.com/css2?family=${q}:wght@400;500;600;700&display=swap`
+  link.href = `https://fonts.googleapis.com/css2?family=${q}:wght@400;500;600;700;800;900&display=swap`
   document.head.appendChild(link)
 }
 
@@ -63,7 +63,7 @@ export function ensureGoogleFontFamilyReady(family: string): Promise<void> {
     if (link) await waitForStylesheetLink(link)
     try {
       await Promise.all(
-        ['400', '500', '600', '700'].map(w => document.fonts.load(`${w} 40px "${key}"`)),
+        ['400', '500', '600', '700', '800', '900'].map(w => document.fonts.load(`${w} 40px "${key}"`)),
       )
     } catch {
       /* ignore */
